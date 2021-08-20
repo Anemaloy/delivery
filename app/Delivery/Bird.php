@@ -26,10 +26,25 @@ class Bird extends AbstractDeliveryPartner implements DeliveryContract
     public function calculate()
     {
         if ($this->validateData()) {
-            return ['price' => 100500, 'date' => '11.03.1994'];
+            // Получаем данные от службы доставки и приводим их к необходимому виду
+            return $this->formatData(100500, 3);
         }
 
         return $this->error_description;
+    }
+
+    /**
+     * Приведение данных к нужному формату
+     * @param float $price
+     * @param string|int $dateOrDay
+     * @return array
+     */
+    public function formatData(float $price, $dateOrDay) :array
+    {
+        return [
+            'price' => $price,
+            'date'  => date('d.m.Y',strtotime(date('d.m.Y') . ' +' . $dateOrDay . ' days')),
+        ];
     }
 
     /**

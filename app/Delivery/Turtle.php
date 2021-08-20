@@ -27,10 +27,25 @@ class Turtle extends AbstractDeliveryPartner implements DeliveryContract
     public function calculate()
     {
         if ($this->validateData()) {
-            return ['price' => 100500, 'date' => '11.03.1994'];
+            // Получаем данные от службы доставки и приводим их к необходимому виду
+            return $this->formatData(10, '13.12.2022');
         }
 
         return $this->error_description;
+    }
+
+    /**
+     * Приведение данных к нужному формату
+     * @param float $price
+     * @param string|int $dateOrDay
+     * @return array
+     */
+    public function formatData(float $price, $dateOrDay) :array
+    {
+        return [
+            'price' => $price * $this->config['coefficient'],
+            'date'  => $dateOrDay,
+        ];
     }
 
     /**

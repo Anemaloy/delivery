@@ -15,4 +15,12 @@ interface DeliveryContract
      * @return bool
      */
     public function validateData() :bool;
+
+    /**
+     * Приведение данных к нужному формату
+     * @param float $price
+     * @param string|int $dateOrDay
+     * @return array
+     */
+    public function formatData(float $price, $dateOrDay) :array;
 }

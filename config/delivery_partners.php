@@ -14,7 +14,8 @@ return [
 
     'turtle' => [
         'name'  => 'Черепашка',
-        'class' => App\Delivery\Turtle::class
+        'class' => App\Delivery\Turtle::class,
+        'coefficient' => 150
     ],
 
 ];
